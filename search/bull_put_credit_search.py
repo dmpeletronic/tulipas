@@ -6,7 +6,7 @@ import instrument.options_helper as options_helper
 # 3.3 - Venda de puts (trava de alta com puts)
 #           Como funciona?
 #               Vende put de strike mais alto (maior valor)
-#               Compra call de strike mais baixo (menor valor)
+#               Compra put de strike mais baixo (menor valor)
 #           Quando?
 #               Ativo em alta
 #           Lucro?

@@ -12,7 +12,7 @@ trading_accounts = c.domain.get_trading_accounts()
 default_portfolio_id = c.domain.get_default_portfolio_id()
 
 # Configuration
-amount_to_operate = 100
+amount_to_operate = 600
 atm_distance_in_percentage = 5 # 5%
 risk_limit_in_percentage = 10 # 10%
 min_days = 10
@@ -36,17 +36,16 @@ for asset in high_trends:
         puts_to_operate.extend(put_spread_list)
 
         for put_spread in put_spread_list:
-                amount = 300
-                spread = -1*amount*put_spread.Risk() / 4
+                spread = -1*amount_to_operate*put_spread.Risk() / 4
                 name = "BullPutCredit({:.2f}".format(float(spread)) +")" +put_spread.sellput['symbol'] + "-" + put_spread.buyput['symbol']
                 positions = [
                     {
                         'symbol': put_spread.sellput['symbol'],
-                        'target_amount': amount,
+                        'target_amount': amount_to_operate,
                         'side': 'SELL',
                     }, {
                         'symbol': put_spread.buyput['symbol'],
-                        'target_amount': amount,
+                        'target_amount': amount_to_operate,
                         'side': 'BUY',
                     }
                 ]

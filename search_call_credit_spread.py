@@ -12,12 +12,12 @@ trading_accounts = c.domain.get_trading_accounts()
 default_portfolio_id = c.domain.get_default_portfolio_id()
 
 # Configuration
-amount_to_operate = 100
+amount_to_operate = 300
 atm_distance_in_percentage = 5 # 5%
 risk_limit_in_percentage = 10 # 10%
 min_days = 10
 max_days = 30
-probability_below = 60 #60%
+probability_below = 80 #80%
 debug = True # printout each strategy
 expire_date = "2022-17-02"
 maximum_robot_number = 1000
