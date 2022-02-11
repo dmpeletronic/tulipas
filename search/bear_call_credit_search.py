@@ -2,6 +2,28 @@ from strategies.call_credit_spread import CallCreditLock
 from oplab import Client
 import instrument.options_helper as options_helper
 
+# 3 - Trava no credito
+# 3.1 - Venda de calls (trava de baixa com calls)
+#           Como funciona?
+#               Vende call de strike mais proximo (acima) do valor do ativo.
+#               Compra call de strike mais longe (mais acima ainda )
+#           Quando?
+#               Ativo em queda
+#           Lucro?
+#               Premio recebido pela venda menos premio pago pela compra
+#           Risco?
+#               Diferença entre o strike da opcao de menor strike e de maior strike
+#           Examplo real:
+#              B3AS3 = R$54.89
+#              Vende  B3SAC595(strike 58.19) por 0.72
+#              Compra B3SAC602(strike 59.69) por 0.63
+#              Lucro = premio recebido - premio pago = 0.72 - 0.63 = 0.09
+#              Risco = strike comprado - strike vendido = 59.69 - 58.19 = 1.50
+#              Caso ideal: lucro maior que risco
+#              Caso aceitavel:
+#                usar opcoes muito OTM que tenham mais de 90% de proabilidade de virar pó,
+#                e utilizar a combinação com melhor relacao lucro/risco
+
 # Search
 def bear_call_credit_search(client: Client, underlying_asset = None, atm_distance = 5, risk_limit = 50, min_days = 0, max_days=90, probability_below = 92, debug = False):
     ''' Client is the oplab client

@@ -2,6 +2,30 @@ from strategies.put_credit_spread import PutCreditLock
 from oplab import Client
 import instrument.options_helper as options_helper
 
+# 3 - Trava no credito
+# 3.3 - Venda de puts (trava de alta com puts)
+#           Como funciona?
+#               Vende put de strike mais alto (maior valor)
+#               Compra call de strike mais baixo (menor valor)
+#           Quando?
+#               Ativo em alta
+#           Lucro?
+#               Premio recebido pela venda menos premio pago pela compra
+#           Risco?
+#               Diferença entre o strike da opcao de menor strike e de maior strike
+#           Examplo real:
+#              B3AS3 = R$54.89
+#              Vende  B3SAO595(strike 52.69) por 0.72
+#              Compra B3SAO602(strike 52.19) por 0.63
+#              Lucro = premio recebido - premio pago = 0.72 - 0.63 = 0.09
+#                 No lucro, ambas as opcoes viram po, e vc fica com o premio recebido
+#              Risco = strike comprado - strike vendido = 52.69 - 52.19 = 0.50
+#                 No prejuizo, ambas as opcoes sao executadas, e o risco eh o valor perdido
+#              Caso ideal: lucro maior que risco
+#              Caso aceitavel:
+#                usar opcoes muito OTM que tenham mais de 90% de proabilidade de ficarem abaixo do valor,
+#                e utilizar a combinação com melhor relacao lucro/risco
+
 # Search
 def bull_put_credit_search(client: Client, underlying_asset = None, atm_distance = 5, risk_limit = 50, min_days = 0, max_days=90, probability_above = 92, debug = False):
     ''' Client is the oplab client

@@ -35,8 +35,8 @@ class PutCreditLock:
     def AboveBelowProbability(self, spot, spot_iv):
         self.above, self.below = probability_above_below(
                             spot,
-                            self.buyput["strike"],
-                            self.buyput["days_to_maturity"],
+                            self.sellput["strike"],
+                            self.sellput["days_to_maturity"],
                             spot_iv
                         )
         return self.above, self.below
