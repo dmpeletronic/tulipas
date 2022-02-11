@@ -3,9 +3,8 @@ from oplab import Client
 import json
 
 c = Client()
-email = os.getenv("EMAIL", default="dmpeletronic@gmail.com")
-password = os.getenv("PASSWORD", default="daiana10!")
-#password = os.getenv("PASSWORD", default="123456")
+email = os.getenv("EMAIL")
+password = os.getenv("PASSWORD")
 userdata = c.login(email, password)
 
 options = c.market.get_options_from_symbol('MGLU3')

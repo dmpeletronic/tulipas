@@ -6,15 +6,15 @@ import json
 import websockets
 
 c = Client()
-email = os.getenv("EMAIL", default="dmpeletronic@gmail.com")
-password = os.getenv("PASSWORD", default="daiana10!")
+email = os.getenv("EMAIL")
+password = os.getenv("PASSWORD")
 
 print("API url:", c.domain.url())
 print("email:", email)
 print("password:", password)
 userdata = c.login(email, password)
 print("User data:", userdata)
-datafeed_url = userdata['endpoints'][0]
+datafeed_url ='wss://datafeed04.oplab.com.br' #userdata['endpoints'][0]
 print("Datafeed url:", datafeed_url)
 datafeed_token = userdata['datafeed-access-token']
 print("Datafeed token", datafeed_token)

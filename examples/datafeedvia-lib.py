@@ -7,7 +7,7 @@ import websockets
 
 c = Client()
 email = os.getenv("EMAIL", default="dmpeletronic@gmail.com")
-password = os.getenv("PASSWORD", default="daiana10!")
+password = os.getenv("PASSWORD", default="123456")
 
 print("API url:", c.domain.url())
 print("email:", email)
@@ -27,5 +27,5 @@ def on_robot(df, message):
 def on_system(df, message):
     print("System: ", message)
 
-c.start_datafeed(['PETR4','VALE3', 'PETRA249'], tick_callback=on_tick, order_callback=on_order, robot_callback=on_robot, system_callback=on_system)
+c.start_datafeed(['PETR4'], tick_callback=on_tick, order_callback=on_order, robot_callback=on_robot, system_callback=on_system)
 

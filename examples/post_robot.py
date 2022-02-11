@@ -3,29 +3,37 @@ from oplab import Client
 import json
 
 c = Client()
-email = os.getenv("EMAIL", default="amaral.alexandre@gmail.com")
-password = os.getenv("PASSWORD", default="ale")
+email = os.getenv("EMAIL")
+password = os.getenv("PASSWORD")
 userdata = c.login(email, password)
 print("userdata", userdata)
 trading_accounts = c.domain.get_trading_accounts()
 print("trading accounts:", json.dumps(trading_accounts, indent=4, sort_keys=True))
 robot = {
     'trading_account_id': trading_accounts[0]['id'],
-    'debug': 2,
+    'debug': 4,
     'mode': 'performance',
-    'spread': 100,
+    'expire_date': '2022-02-15',
+    'spread': 1170,
     'strategy': {
-        'name': 'strategy_test',
-        'underlying': 'LREN4',
+        'name': 'collar b3',
+        'underlying': 'B3SA3',
         },
-    'positions': [
+    'legs': [
         {
-            'symbol': 'LRENA280',
-            'target_amount': -100
+            'symbol': 'B3SA3',
+            'target_amount': 100,
+            'side': 'buy'
         },
         {
-            'symbol': 'LRENA285',
-            'target_amount': 100
+            'symbol': 'B3SAO125',
+            'target_amount': 100,
+            'side': 'buy'
+        },
+        {
+            'symbol': 'B3SAC121',
+            'target_amount': 100,
+            'side': 'sell'
         }
     ]
 }

@@ -1,4 +1,4 @@
-import instrument
+import instrument.instrument as instrument
 from oplab import Client
 import json
 

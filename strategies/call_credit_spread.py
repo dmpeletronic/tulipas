@@ -1,4 +1,4 @@
-import probability
+from simple_probability import probability_above_below
 
 #https://robinhood.com/us/en/support/articles/advanced-options-strategies/
 class CallCreditLock:
@@ -23,7 +23,7 @@ class CallCreditLock:
         return ratio
 
     def AboveBelowProbability(self, spot, spot_iv):
-        self.above, self.below = probability.probability_above_below(
+        self.above, self.below = probability_above_below(
                             spot,
                             self.sellcall["strike"],
                             self.sellcall["days_to_maturity"],
